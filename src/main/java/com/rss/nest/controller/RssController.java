@@ -3,8 +3,8 @@ package com.rss.nest.controller;
 import com.github.xiaoymin.knife4j.annotations.ApiOperationSupport;
 import com.github.xiaoymin.knife4j.annotations.ApiSupport;
 import com.rometools.rome.feed.rss.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -19,15 +19,19 @@ import org.springframework.web.client.RestTemplate;
 import java.util.Collections;
 import java.util.Date;
 
+
+/**
+ * @author Lemon695
+ */
 @Slf4j
 @ApiSupport(order = 1)
-@Api(tags = "RSS订阅")
+@Tag(name = "RSS订阅")
 @RestController
 @RequestMapping("/rss/feed")
 public class RssController {
 
     @ApiOperationSupport(order = 1)
-    @ApiOperation(value = "RSS测试", notes = "")
+    @Operation(summary = "RSS测试")
     @GetMapping(path = "/rss1")
     public Channel rss() {
         Channel channel = new Channel();
