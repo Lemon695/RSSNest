@@ -34,3 +34,32 @@ spring:
     activate:
       on-profile:
         - dev
+  data:
+    redis:
+      database: 1
+      host: 127.0.0.1
+      port: 6379
+      password:
+      lettuce:
+        pool:
+          max-active: 8
+          max-wait: 1ms
+          max-idle: 8
+          min-idle: 0
+        shutdown-timeout: 100ms
+      timeout: 10000ms
+  cache:
+    type: redis
+    cache-names:
+      - USERS
+    redis:
+      # 缓存过期时间为10*60分钟，单位为毫秒
+      time-to-live: 36000000
+      # 是否允许缓存空数据，当查询到的结果为空时缓存空数据到redis中
+      cache-null-values: true
+      # 为Redis的KEY拼接前缀
+      key-prefix: "BOOT_CACHE:"
+      # 是否拼接KEY前缀
+      use-key-prefix: true
+      # 是否开启缓存统计
+      enable-statistics: false

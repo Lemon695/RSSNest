@@ -35,7 +35,7 @@ public class RssChannelDataUtil {
      * 清理非法字符串
      *
      * @param rssChannel RSS响应数据
-     * @return: code.d6.rss.common.models.bean.model.rss.RssChannel
+     * @return: Rss响应数据
      * @author Lemon695
      * @date 2024/9/14 下午3:40
      */
