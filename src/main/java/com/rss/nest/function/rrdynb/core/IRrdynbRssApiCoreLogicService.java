@@ -17,5 +17,5 @@ public interface IRrdynbRssApiCoreLogicService {
      * @author Lemon695
      * @date 2024/9/30 下午6:10
      */
-    RssChannel dianPingUserFeeds(String category);
+    RssChannel newVideoList(String category);
 }

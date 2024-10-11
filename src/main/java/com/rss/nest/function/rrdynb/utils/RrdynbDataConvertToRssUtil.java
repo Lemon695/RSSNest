@@ -26,7 +26,7 @@ public class RrdynbDataConvertToRssUtil {
      * @author Lemon695
      * @date 2024/9/30 下午6:21
      */
-    public static WebHtmlDataDTO checkParseUserFeedsToRss(String movieTitle, String link, List<RrdynbHtmlVideoDTO> videoList) {
+    public static WebHtmlDataDTO checkParseVideoListToRss(String movieTitle, String link, List<RrdynbHtmlVideoDTO> videoList) {
         WebHtmlDataDTO webHtmlDataDTO = new WebHtmlDataDTO();
         List<WebDataArticleDTO> articleList = webHtmlDataDTO.getArticleList();
 

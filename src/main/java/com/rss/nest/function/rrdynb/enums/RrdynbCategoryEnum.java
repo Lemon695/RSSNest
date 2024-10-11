@@ -43,7 +43,7 @@ public enum RrdynbCategoryEnum {
      * @author Lemon695
      * @date 2024/9/30 下午6:14
      */
-    public static RrdynbCategoryEnum getCiMiDataByDataType(String category) {
+    public static RrdynbCategoryEnum getEnumDataByDataType(String category) {
         for (RrdynbCategoryEnum data : RrdynbCategoryEnum.values()) {
             if (Objects.equals(category, data.getCategory())) {
                 return data;

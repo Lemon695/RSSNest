@@ -34,7 +34,7 @@ public class RrdynbRssController {
     public Channel newVideoList(@RequestHeader HttpHeaders headers, @PathVariable("category") String category) {
 
         try {
-            RssChannel rssChannel = rrdynbRssApiCoreLogicService.dianPingUserFeeds(category);
+            RssChannel rssChannel = rrdynbRssApiCoreLogicService.newVideoList(category);
             return RssOutPutUtil.rssOutPut(rssChannel);
         } catch (Exception e) {
             e.printStackTrace();

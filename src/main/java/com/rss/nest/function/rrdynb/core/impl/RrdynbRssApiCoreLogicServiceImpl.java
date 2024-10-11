@@ -40,8 +40,8 @@ public class RrdynbRssApiCoreLogicServiceImpl implements IRrdynbRssApiCoreLogicS
      * @date 2024/9/30 下午6:10
      */
     @Override
-    public RssChannel dianPingUserFeeds(String category) {
-        RrdynbCategoryEnum rrdynbCategoryEnum = RrdynbCategoryEnum.getCiMiDataByDataType(category);
+    public RssChannel newVideoList(String category) {
+        RrdynbCategoryEnum rrdynbCategoryEnum = RrdynbCategoryEnum.getEnumDataByDataType(category);
         if (rrdynbCategoryEnum == null) {
             return null;
         }
@@ -54,7 +54,7 @@ public class RrdynbRssApiCoreLogicServiceImpl implements IRrdynbRssApiCoreLogicS
         Document document = Jsoup.parse(result);
 
         List<RrdynbHtmlVideoDTO> videoList = RrdynbParseHtmlUtil.parseHtmlToVideoList(document);
-        WebHtmlDataDTO webHtmlDataDTO = RrdynbDataConvertToRssUtil.checkParseUserFeedsToRss(movieTitle, link, videoList);
+        WebHtmlDataDTO webHtmlDataDTO = RrdynbDataConvertToRssUtil.checkParseVideoListToRss(movieTitle, link, videoList);
 
         //解析数据转为RSS
         return HtmlDataConvertToRssUtil.analysisDocDataToRss(webHtmlDataDTO);
