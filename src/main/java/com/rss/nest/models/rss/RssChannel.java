@@ -1,6 +1,8 @@
 package com.rss.nest.models.rss;
 
+import com.rometools.rome.feed.WireFeed;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.List;
@@ -10,8 +12,9 @@ import java.util.List;
  * @date: 2024/9/30 下午4:28:16
  * @description: 解析得到的RSSChannel数据
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class RssChannel {
+public class RssChannel extends WireFeed {
 
     private String title;
 
@@ -39,7 +42,7 @@ public class RssChannel {
 
     private String styleSheet;
 
-    private List<RssModule> modules;
+    private List<RssModule> modulesV2;
 
     public String uri;
 

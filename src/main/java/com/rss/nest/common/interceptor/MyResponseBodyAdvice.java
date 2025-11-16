@@ -59,7 +59,7 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
                 Channel channel = (Channel) body;
 
                 if (RssChannelCheckUtil.checkChannelHasItems(channel)) {
-                    redisValue = RssUtil.rssChannelOutPutXml(channel);
+                    redisValue = RssUtil.rssChannelOutPutXmlV2(channel);
                 }
             } else {
                 redisValue = mapper.writeValueAsString(body);
@@ -67,7 +67,7 @@ public class MyResponseBodyAdvice implements ResponseBodyAdvice {
 
             if (StringUtils.isNotBlank(redisValue) && com.rss.nest.utils.str.StringUtils.isXML(redisValue)) {
                 //TODO 缓存3小时
-                Integer rssCacheHour = 3;
+                int rssCacheHour = 3;
 
                 String rssRedisKey = rssCacheDataQueryService.createRssRedisKey(((ServletServerHttpRequest) request).getServletRequest());
                 //缓存3小时

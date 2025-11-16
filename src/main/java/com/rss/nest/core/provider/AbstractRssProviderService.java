@@ -9,8 +9,9 @@ import com.rss.nest.models.rss.RssChannel;
 import com.rss.nest.models.webhtml.WebDataArticleDTO;
 import com.rss.nest.models.webhtml.WebHtmlDataDTO;
 import com.rss.nest.utils.http.OkHttpClientUtil;
-import com.rss.nest.utils.rss.HtmlDataConvertToRssUtil;
+import com.rss.nest.utils.web.HtmlDataConvertToRssUtil;
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.Headers;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +121,7 @@ public abstract class AbstractRssProviderService implements RssProviderService {
     protected String fetchHtml(String url) {
         try {
             Map<String, String> headers = getRequestHeaders();
-            return okHttpClientUtil.doGet(url, headers);
+            return okHttpClientUtil.doGet(url, Headers.of(headers));
         } catch (Exception e) {
             log.error("HTML抓取失败, URL: {}", url, e);
             throw new HtmlFetchException("无法访问网站: " + url, e);
@@ -151,9 +152,9 @@ public abstract class AbstractRssProviderService implements RssProviderService {
      */
     protected WebHtmlDataDTO buildWebHtmlData(List<WebDataArticleDTO> articles, Map<String, String> params) {
         WebHtmlDataDTO webHtmlData = new WebHtmlDataDTO();
-        webHtmlData.setWebDataArticleList(articles);
+        webHtmlData.setArticleList(articles);
         webHtmlData.setTitle(getRssTitle(params));
-        webHtmlData.setUrl(siteConfig.getBaseUrl());
+        webHtmlData.setLink(siteConfig.getBaseUrl());
         webHtmlData.setDescription(getRssDescription(params));
         return webHtmlData;
     }

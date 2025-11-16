@@ -1,7 +1,9 @@
 package com.rss.nest.utils.rss;
 
+import com.rometools.rome.feed.rss.Channel;
 import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.WireFeedOutput;
+import com.rss.nest.models.rss.RssChannel;
 
 /**
  * @author Lemon695
@@ -15,7 +17,18 @@ public class RssUtil {
      *
      * @param channel RSS数据
      */
-    public static String rssChannelOutPutXml(com.rometools.rome.feed.rss.Channel channel) {
+    public static String rssChannelOutPutXml(RssChannel channel) {
+        WireFeedOutput out = new WireFeedOutput();
+        try {
+            return out.outputString(channel);
+        } catch (FeedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static String rssChannelOutPutXmlV2(Channel channel) {
         WireFeedOutput out = new WireFeedOutput();
         try {
             return out.outputString(channel);

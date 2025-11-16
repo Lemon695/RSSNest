@@ -15,6 +15,7 @@ import java.util.Date;
 public class DateParseUtil {
 
     public static final SimpleDateFormat SDF_V1_YYYY_MM_DD = new SimpleDateFormat("yyyy-MM-dd");
+    public static final SimpleDateFormat SDF_V2_YYYY_MM_DD = new SimpleDateFormat("yyyy/MM/dd");
 
 
     /**

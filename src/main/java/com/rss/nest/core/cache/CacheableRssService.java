@@ -1,5 +1,6 @@
 package com.rss.nest.core.cache;
 
+import com.rometools.rome.feed.rss.Channel;
 import com.rss.nest.core.provider.RssProviderFactory;
 import com.rss.nest.core.provider.RssProviderService;
 import com.rss.nest.models.rss.RssChannel;
