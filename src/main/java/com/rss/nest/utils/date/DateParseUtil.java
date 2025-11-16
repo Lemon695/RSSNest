@@ -37,4 +37,52 @@ public class DateParseUtil {
         return date;
     }
 
+    /**
+     * 解析时间（支持字符串格式）
+     *
+     * @param format  时间格式字符串 如：yyyy-MM-dd HH:mm:ss
+     * @param dateStr 时间字符串
+     * @return Date对象
+     */
+    public static Date parseDateStr(String format, String dateStr) {
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat(format);
+            return sdf.parse(dateStr);
+        } catch (ParseException e) {
+            log.error("日期解析失败, format={}, dateStr={}, error={}", format, dateStr, e.toString());
+            return null;
+        }
+    }
+
+    /**
+     * 自动解析日期（尝试多种常见格式）
+     *
+     * @param dateStr 时间字符串
+     * @return Date对象
+     */
+    public static Date parseDate(String dateStr) {
+        String[] formats = {
+                "yyyy-MM-dd HH:mm:ss",
+                "yyyy-MM-dd",
+                "yyyy/MM/dd HH:mm:ss",
+                "yyyy/MM/dd",
+                "yyyy年MM月dd日 HH:mm:ss",
+                "yyyy年MM月dd日",
+                "MM-dd HH:mm",
+                "MM/dd HH:mm"
+        };
+
+        for (String format : formats) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat(format);
+                return sdf.parse(dateStr);
+            } catch (ParseException e) {
+                // 继续尝试下一个格式
+            }
+        }
+
+        log.warn("无法解析日期: {}", dateStr);
+        return null;
+    }
+
 }

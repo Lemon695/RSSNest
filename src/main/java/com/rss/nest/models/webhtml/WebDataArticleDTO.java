@@ -3,6 +3,8 @@ package com.rss.nest.models.webhtml;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Lemon695
@@ -12,16 +14,45 @@ import java.util.Date;
 @Data
 public class WebDataArticleDTO {
 
+    /**
+     * 标题
+     */
     private String title;
 
+    /**
+     * 链接
+     */
     private String url;
 
+    /**
+     * 内容
+     */
     private String content;
 
     /**
      * 发布时间
      */
     private Date publishTime;
+
+    /**
+     * 图片URL
+     */
+    private String imageUrl;
+
+    /**
+     * 作者
+     */
+    private String author;
+
+    /**
+     * 分类
+     */
+    private String category;
+
+    /**
+     * 自定义字段
+     */
+    private Map<String, String> customFields;
 
     public WebDataArticleDTO() {
     }
@@ -31,5 +62,25 @@ public class WebDataArticleDTO {
         this.url = url;
         this.content = content;
         this.publishTime = publishTime;
+    }
+
+    /**
+     * 添加自定义字段
+     */
+    public void addCustomField(String key, String value) {
+        if (customFields == null) {
+            customFields = new HashMap<>();
+        }
+        customFields.put(key, value);
+    }
+
+    /**
+     * 获取自定义字段
+     */
+    public String getCustomField(String key) {
+        if (customFields == null) {
+            return null;
+        }
+        return customFields.get(key);
     }
 }
